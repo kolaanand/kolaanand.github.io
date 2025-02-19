@@ -3,99 +3,254 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume</title>
+    <title>My Personal Website</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        /* Resetting some default styles */
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            box-sizing: border-box;
         }
-        .container {
-            width: 80%;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #fafafa;
+            color: #333;
+            overflow-x: hidden;
         }
+
+        /* Header styling */
         header {
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        header h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        header p {
+            font-size: 1.2em;
+        }
+
+        /* Navbar styling */
+        nav {
+            background-color: #333;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            animation: slideDown 1s ease-in-out;
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+            padding: 15px 0;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.2em;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #ff7e5f;
+        }
+
+        /* Main content section */
+        .content {
+            padding: 100px 20px 40px 20px;
             text-align: center;
         }
-        header h1 {
-            margin: 0;
+
+        .content h2 {
             font-size: 2.5em;
-            color: #333;
+            color: #ff7e5f;
+            margin-bottom: 30px;
+            animation: slideUp 1s ease-in-out;
         }
-        .section-title {
-            font-size: 1.5em;
-            margin-top: 20px;
-            color: #333;
+
+        .content p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            color: #555;
+            animation: fadeIn 2s ease-in-out;
         }
-        .contact-info,
-        .experience,
-        .education,
-        .skills {
-            margin: 20px 0;
+
+        /* Card layout for portfolio or projects */
+        .cards {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
         }
-        .contact-info p,
-        .experience p,
-        .education p,
-        .skills p {
-            font-size: 1.1em;
+
+        .card {
+            background: linear-gradient(to right, #f6d365, #fda085);
+            width: 250px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
         }
-        .experience ul,
-        .education ul {
-            list-style: none;
-            padding-left: 0;
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
-        .experience li,
-        .education li {
+
+        .card img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            font-size: 1.4em;
+            color: #fff;
             margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #fff;
+            font-size: 1em;
+        }
+
+        /* Footer styling */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            animation: fadeIn 3s ease-in-out;
+        }
+
+        footer a {
+            color: #ff7e5f;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Media Queries for Responsiveness */
+        @media screen and (max-width: 768px) {
+            .cards {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .card {
+                width: 90%;
+            }
+
+            header h1 {
+                font-size: 2.5em;
+            }
+
+            header p {
+                font-size: 1.1em;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Anand</h1>
-            <p>Software Developer</p>
-        </header>
 
-        <div class="contact-info">
-            <h2 class="section-title">Contact Information</h2>
-            <p>Email: anand.kola@sasi.ac.in</p>
-            <p>Phone: 95565455585</p>
-            <p>LinkedIn: linkedin.com/in/johndoe</p>
-            <p>Website: kolaanand.github.io</p>
+<header>
+    <h1>Welcome to My Website</h1>
+    <p>I'm a passionate web developer, designer, and tech enthusiast.</p>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="#about">About Me</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<div class="content">
+    <h2 id="about">About Me</h2>
+    <p>Hello! I'm a full-stack developer with a love for creating beautiful, functional websites. I'm always eager to learn new technologies and collaborate on exciting projects.</p>
+    
+    <h2 id="projects">My Projects</h2>
+    <div class="cards">
+        <div class="card">
+            <img src="https://via.placeholder.com/250" alt="Project 1">
+            <h3>Project One</h3>
+            <p>This is a web app I built using HTML, CSS, and JavaScript.</p>
         </div>
-
-        <div class="experience">
-            <h2 class="section-title">Experience</h2>
-            <ul>
-                <li>
-                    <strong>Software Developer</strong> - ABC Company (2020 - Present)
-                    <p>Developed web applications using HTML, CSS, and JavaScript. Worked with team members to create user-friendly interfaces.</p>
-                </li>
-                <li>
-                    <strong>Junior Developer</strong> - XYZ Corp (2018 - 2020)
-                    <p>Assisted in the development of software solutions and maintained existing codebase.</p>
-                </li>
-            </ul>
+        <div class="card">
+            <img src="https://via.placeholder.com/250" alt="Project 2">
+            <h3>Project Two</h3>
+            <p>A responsive portfolio website designed with modern web technologies.</p>
         </div>
-
-        <div class="education">
-            <h2 class="section-title">Education</h2>
-            <ul>
-                <li>
-                    <strong>Electrical and Electronical engineering</strong> - University of Example (2014 - 2018)
-                </li>
-            </ul>
-        </div>
-
-        <div class="skills">
-            <h2 class="section-title">Skills</h2>
-            <p>HTML, CSS, JavaScript, React, Node.js, SQL, Git</p>
+        <div class="card">
+            <img src="https://via.placeholder.com/250" alt="Project 3">
+            <h3>Project Three</h3>
+            <p>A simple e-commerce site built with React and Node.js.</p>
         </div>
     </div>
-</body>
-</html>
+</div>
+
+<footer id="contact">
+    <
