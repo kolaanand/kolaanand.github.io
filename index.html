@@ -3,254 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Personal Website</title>
+    <title>My Personal Web Page</title>
     <style>
-        /* Resetting some default styles */
+        /* General Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: "Arial", sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #fafafa;
-            color: #333;
-            overflow-x: hidden;
+            background-color: #0a192f;
+            color: #ccd6f6;
+            text-align: center;
         }
 
-        /* Header styling */
-        header {
-            background: linear-gradient(to right, #ff7e5f, #feb47b);
-            color: white;
-            text-align: center;
-            padding: 100px 0;
+        /* Hero Section */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: linear-gradient(to right, #141e30, #243b55);
             animation: fadeIn 2s ease-in-out;
         }
 
-        header h1 {
-            font-size: 3.5em;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+        .hero h1 {
+            font-size: 3rem;
+            opacity: 0;
+            animation: slideDown 1.5s ease-out forwards;
         }
 
-        header p {
-            font-size: 1.2em;
+        .hero p {
+            font-size: 1.2rem;
+            margin-top: 10px;
+            opacity: 0;
+            animation: fadeIn 2.5s ease-in-out forwards;
         }
 
-        /* Navbar styling */
-        nav {
-            background-color: #333;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 100;
-            animation: slideDown 1s ease-in-out;
-        }
-
-        nav ul {
-            list-style-type: none;
-            display: flex;
-            justify-content: center;
-            padding: 15px 0;
-        }
-
-        nav ul li {
-            margin: 0 20px;
-        }
-
-        nav ul li a {
+        /* Animated Buttons */
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 24px;
+            font-size: 1.2rem;
+            color: white;
+            background: #ff7b54;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
             text-decoration: none;
-            color: white;
-            font-size: 1.2em;
-            transition: color 0.3s ease;
+            transition: transform 0.3s ease, background 0.3s ease;
         }
 
-        nav ul li a:hover {
-            color: #ff7e5f;
+        .btn:hover {
+            background: #ff5722;
+            transform: scale(1.1);
         }
 
-        /* Main content section */
-        .content {
-            padding: 100px 20px 40px 20px;
-            text-align: center;
+        /* Resume Section */
+        .resume {
+            padding: 50px;
+            background: #112240;
         }
 
-        .content h2 {
-            font-size: 2.5em;
-            color: #ff7e5f;
-            margin-bottom: 30px;
-            animation: slideUp 1s ease-in-out;
+        .resume h2 {
+            font-size: 2.5rem;
+            color: #64ffda;
         }
 
-        .content p {
-            font-size: 1.2em;
-            margin-bottom: 20px;
-            color: #555;
-            animation: fadeIn 2s ease-in-out;
+        .resume p {
+            font-size: 1.2rem;
+            margin-top: 10px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        /* Card layout for portfolio or projects */
-        .cards {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .card {
-            background: linear-gradient(to right, #f6d365, #fda085);
-            width: 250px;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease-in-out;
-            text-align: center;
-            animation: fadeIn 2s ease-in-out;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-
-        .card img {
-            width: 100%;
-            border-radius: 10px;
-            margin-bottom: 15px;
-        }
-
-        .card h3 {
-            font-size: 1.4em;
-            color: #fff;
-            margin-bottom: 10px;
-        }
-
-        .card p {
-            color: #fff;
-            font-size: 1em;
-        }
-
-        /* Footer styling */
+        /* Footer */
         footer {
-            background-color: #333;
-            color: white;
+            margin-top: 50px;
             padding: 20px;
-            text-align: center;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-            animation: fadeIn 3s ease-in-out;
+            background: #112240;
+            color: #64ffda;
         }
 
-        footer a {
-            color: #ff7e5f;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* Animations */
+        /* Keyframe Animations */
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+            0% { opacity: 0; }
+            100% { opacity: 1; }
         }
 
         @keyframes slideDown {
-            from {
-                transform: translateY(-100%);
-            }
-            to {
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideUp {
-            from {
-                transform: translateY(30px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        /* Media Queries for Responsiveness */
-        @media screen and (max-width: 768px) {
-            .cards {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .card {
-                width: 90%;
-            }
-
-            header h1 {
-                font-size: 2.5em;
-            }
-
-            header p {
-                font-size: 1.1em;
-            }
-
-            nav ul {
-                flex-direction: column;
-            }
-
-            nav ul li {
-                margin: 10px 0;
-            }
+            0% { opacity: 0; transform: translateY(-50px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>Welcome to Anand Website</h1>
-    <p>I'm a passionate web developer, designer, and tech enthusiast.</p>
-</header>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1 class="floating">Hello, I'm [Your Name] 👋</h1>
+        <p>Welcome to my personal webpage. Let's create something awesome together.</p>
+        <a href="about.html" class="btn" target="_blank">Learn More</a>
+    </section>
 
-<nav>
-    <ul>
-        <li><a href="#about">About Me</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-    </ul>
-</nav>
+    <!-- Resume Section -->
+    <section class="resume">
+        <h2>My Resume</h2>
+        <p>View my detailed resume showcasing my skills and experience.</p>
+        <a href="about.html" class="btn" target="_blank">View Resume</a>
+    </section>
 
-<div class="content">
-    <h2 id="about">About Me</h2>
-    <p>Hello! I'm a  full-stack developer with a love for creating beautiful, functional websites. I'm always eager to learn new technologies and collaborate on exciting projects.</p>
-    
-    <h2 id="projects">My Projects</h2>
-    <div class="cards">
-        <div class="card">
-            <img src="https://via.placeholder.com/250" alt="Project 1">
-            <h3>Project One</h3>
-            <p>This is a web app I built using HTML, CSS, and JavaScript.</p>
-        </div>
-        <div class="card">
-            <img src="https://via.placeholder.com/250" alt="Project 2">
-            <h3>Project Two</h3>
-            <p>A responsive portfolio website designed with modern web technologies.</p>
-        </div>
-        <div class="card">
-            <img src="https://via.placeholder.com/250" alt="Project 3">
-            <h3>Project Three</h3>
-            <p>A simple e-commerce site built with React and Node.js.</p>
-        </div>
-    </div>
-</div>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 [Your Name]. All Rights Reserved.</p>
+    </footer>
 
-<footer id="contact">
-    
+</body>
+</html>
