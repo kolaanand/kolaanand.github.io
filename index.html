@@ -16,13 +16,14 @@
 
         /* Background Image */
         body {
-            background: url('https://img.freepik.com/free-photo/abstract-digital-grid-black-background_53876-97647.jpg?semt=ais_hybrid') no-repeat center center fixed;
+            background: url('https://img.freepik.com/free-photo/abstract-digital-grid-black-background_53876-97647.jpg?semt=ais_hybrid') 
+                        no-repeat center center fixed;
             background-size: cover;
             color: #ccd6f6;
             text-align: center;
         }
 
-        /* Hero Section */
+        /* Hero Section (Desktop Mode by Default) */
         .hero {
             display: flex;
             flex-direction: column;
@@ -31,6 +32,7 @@
             height: 100vh;
             background: rgba(0, 0, 0, 0.6); /* Semi-transparent overlay */
             width: 100%;
+            min-width: 1024px; /* Ensures Desktop Layout */
         }
 
         .hero h1 {
@@ -72,6 +74,7 @@
             padding: 20px;
             background: rgba(17, 34, 64, 0.8);
             color: #64ffda;
+            min-width: 1024px; /* Forces desktop view */
         }
 
         /* Keyframe Animations */
@@ -83,6 +86,20 @@
         @keyframes slideDown {
             0% { opacity: 0; transform: translateY(-50px); }
             100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Mobile Responsiveness (Optional) */
+        @media (max-width: 1024px) {
+            body {
+                background-size: cover;
+            }
+            .hero {
+                min-width: auto;
+                padding: 20px;
+            }
+            footer {
+                min-width: auto;
+            }
         }
     </style>
 </head>
