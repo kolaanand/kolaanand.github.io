@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Personal Web Page</title>
+    <title>ANAND - Official Website</title>
     <style>
         /* General Styles */
         * {
@@ -14,67 +14,99 @@
             scroll-behavior: smooth;
         }
 
-        /* Background Image */
+        /* Background with Gradient Overlay */
         body {
-            background: url('https://img.freepik.com/free-photo/abstract-digital-grid-black-background_53876-97647.jpg?semt=ais_hybrid') 
-                        no-repeat center center fixed;
-            background-size: cover;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
             color: #ccd6f6;
             text-align: center;
+            overflow-x: hidden;
         }
 
-        /* Hero Section (Desktop Mode by Default) */
+        /* Hero Section */
         .hero {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100vh;
-            background: rgba(0, 0, 0, 0.6); /* Semi-transparent overlay */
             width: 100%;
-            min-width: 1024px; /* Ensures Desktop Layout */
+            background: rgba(0, 0, 0, 0.6); /* Semi-transparent overlay */
+            padding: 20px;
         }
 
+        /* Glowing Heading */
         .hero h1 {
             font-size: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #64ffda;
+            text-shadow: 0 0 10px #64ffda, 0 0 20px #64ffda, 0 0 30px #64ffda;
             opacity: 0;
-            animation: slideDown 1.5s ease-out forwards;
+            animation: slideDown 1.5s ease-out forwards, glow 2s infinite alternate;
         }
 
+        /* Typing Effect for Subtitle */
+        .typing-container {
+            display: inline-block;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ffcc00;
+            white-space: nowrap;
+            border-right: 3px solid #ffcc00;
+            width: 0;
+            overflow: hidden;
+            animation: typing 3s steps(22) forwards, blink 0.8s infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 260px; }
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
+        /* Subheading */
         .hero p {
             font-size: 1.2rem;
             margin-top: 10px;
             opacity: 0;
             animation: fadeIn 2.5s ease-in-out forwards;
+            color: #ffffff;
         }
 
-        /* Animated Buttons */
+        /* Animated Buttons with Glow */
         .btn {
             display: inline-block;
             margin-top: 20px;
             padding: 12px 24px;
             font-size: 1.2rem;
             color: white;
-            background: #ff7b54;
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
             border: none;
             cursor: pointer;
-            border-radius: 5px;
+            border-radius: 30px;
             text-decoration: none;
-            transition: transform 0.3s ease, background 0.3s ease;
+            transition: 0.3s ease-in-out;
+            box-shadow: 0 0 10px rgba(255, 75, 43, 0.8);
+            animation: floating 3s infinite ease-in-out;
         }
 
         .btn:hover {
-            background: #ff5722;
+            background: linear-gradient(45deg, #ff4b2b, #ff416c);
             transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 75, 43, 1);
         }
 
-        /* Footer */
+        /* Footer with Gradient */
         footer {
             margin-top: 50px;
             padding: 20px;
-            background: rgba(17, 34, 64, 0.8);
+            background: linear-gradient(90deg, #0f2027, #203a43);
             color: #64ffda;
-            min-width: 1024px; /* Forces desktop view */
+            width: 100%;
+            text-align: center;
         }
 
         /* Keyframe Animations */
@@ -88,17 +120,34 @@
             100% { opacity: 1; transform: translateY(0); }
         }
 
-        /* Mobile Responsiveness (Optional) */
+        @keyframes glow {
+            0% { text-shadow: 0 0 10px #64ffda, 0 0 20px #64ffda; }
+            100% { text-shadow: 0 0 15px #64ffda, 0 0 30px #64ffda; }
+        }
+
+        /* Floating Animation */
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Mobile Responsiveness */
         @media (max-width: 1024px) {
             body {
                 background-size: cover;
             }
             .hero {
-                min-width: auto;
                 padding: 20px;
             }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .typing-container {
+                font-size: 1.3rem;
+            }
             footer {
-                min-width: auto;
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -107,7 +156,8 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <h1 class="floating">Hello, I'm ANAND </h1>
+        <h1 class="floating">Hello, I'm ANAND</h1>
+        <div class="typing-container">Official Personal Website</div>
         <p>Welcome to my personal webpage. Let's create something awesome together.</p>
         <a href="about.html" class="btn" target="_blank">Learn More</a>
     </section>
