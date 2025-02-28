@@ -14,12 +14,25 @@
             scroll-behavior: smooth;
         }
 
-        /* Background with Gradient Overlay */
+        /* Background Image with Gradient Overlay */
         body {
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            background: url('https://c4.wallpaperflare.com/wallpaper/914/746/419/abstract-digital-art-minimalism-simple-background-wallpaper-preview.jpg') no-repeat center center/cover;
             color: #ccd6f6;
             text-align: center;
             overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Dark Overlay for Better Readability */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6); /* Semi-transparent overlay */
+            z-index: -1;
         }
 
         /* Hero Section */
@@ -30,8 +43,9 @@
             justify-content: center;
             height: 100vh;
             width: 100%;
-            background: rgba(0, 0, 0, 0.6); /* Semi-transparent overlay */
             padding: 20px;
+            position: relative;
+            z-index: 1;
         }
 
         /* Glowing Heading */
@@ -99,11 +113,27 @@
             box-shadow: 0 0 20px rgba(255, 75, 43, 1);
         }
 
+        /* Social Media Links */
+        .social-links {
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: #64ffda;
+            margin: 10px;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+
+        .social-links a:hover {
+            text-decoration: underline;
+        }
+
         /* Footer with Gradient */
         footer {
             margin-top: 50px;
             padding: 20px;
-            background: linear-gradient(90deg, #0f2027, #203a43);
+            background: rgba(0, 0, 0, 0.8);
             color: #64ffda;
             width: 100%;
             text-align: center;
@@ -159,7 +189,13 @@
         <h1 class="floating">Hello, I'm ANAND</h1>
         <div class="typing-container">Official Personal Website</div>
         <p>Welcome to my personal webpage. Let's create something awesome together.</p>
-        <a href="about.html" class="btn" target="_blank">Learn More</a>
+        <a href="resume.html" class="btn">View My Resume</a>
+
+        <!-- Social Media Links -->
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/anand-kola-6b7649297/" target="_blank">LinkedIn</a> |
+            <a href="https://github.com/yourprofile" target="_blank">GitHub</a>
+        </div>
     </section>
 
     <!-- Footer -->
