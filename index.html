@@ -1,208 +1,547 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANAND - Official Website</title>
-    <style>
-        /* General Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Arial", sans-serif;
-            scroll-behavior: smooth;
-        }
-
-        /* Background with 3D Wallpaper */
-        body {
-            overflow: hidden;
-            background: url('https://images.unsplash.com/photo-1724430943574-23348700dfea?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw3NXx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
-            color: #ccd6f6;
-            text-align: center;
-            position: relative;
-        }
-
-        /* Dark Overlay for Better Readability */
-        body::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
-            z-index: -1;
-        }
-
-        /* Hero Section */
-        .hero {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            width: 100%;
-            padding: 20px;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Glowing Heading */
-        .hero h1 {
-            font-size: 3rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: #64ffda;
-            text-shadow: 0 0 10px #64ffda, 0 0 20px #64ffda, 0 0 30px #64ffda;
-            opacity: 0;
-            animation: slideDown 1.5s ease-out forwards, glow 2s infinite alternate;
-        }
-
-        /* Typing Effect for Subtitle */
-        .typing-container {
-            display: inline-block;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #ffcc00;
-            white-space: nowrap;
-            border-right: 3px solid #ffcc00;
-            width: 0;
-            overflow: hidden;
-            animation: typing 3s steps(22) forwards, blink 0.8s infinite;
-        }
-
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 260px; }
-        }
-
-        @keyframes blink {
-            50% { border-color: transparent; }
-        }
-
-        /* Subheading */
-        .hero p {
-            font-size: 1.2rem;
-            margin-top: 10px;
-            opacity: 0;
-            animation: fadeIn 2.5s ease-in-out forwards;
-            color: #ffffff;
-        }
-
-        /* Animated Buttons with Glow */
-        .btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 12px 24px;
-            font-size: 1.2rem;
-            color: white;
-            background: linear-gradient(45deg, #ff416c, #ff4b2b);
-            border: none;
-            cursor: pointer;
-            border-radius: 30px;
-            text-decoration: none;
-            transition: 0.3s ease-in-out;
-            box-shadow: 0 0 10px rgba(255, 75, 43, 0.8);
-            animation: floating 3s infinite ease-in-out;
-        }
-
-        .btn:hover {
-            background: linear-gradient(45deg, #ff4b2b, #ff416c);
-            transform: scale(1.1);
-            box-shadow: 0 0 20px rgba(255, 75, 43, 1);
-        }
-
-        /* Social Media Links */
-        .social-links {
-            margin-top: 20px;
-        }
-
-        .social-links a {
-            color: #64ffda;
-            margin: 10px;
-            text-decoration: none;
-            font-size: 1.1rem;
-        }
-
-        .social-links a:hover {
-            text-decoration: underline;
-        }
-
-        /* Footer with Gradient */
-        footer {
-            margin-top: 50px;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.8);
-            color: #64ffda;
-            width: 100%;
-            text-align: center;
-        }
-
-        /* Keyframe Animations */
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-        @keyframes slideDown {
-            0% { opacity: 0; transform: translateY(-50px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes glow {
-            0% { text-shadow: 0 0 10px #64ffda, 0 0 20px #64ffda; }
-            100% { text-shadow: 0 0 15px #64ffda, 0 0 30px #64ffda; }
-        }
-
-        /* Floating Animation */
-        @keyframes floating {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-
-        /* Mobile Responsiveness */
-        @media (max-width: 1024px) {
-            body {
-                background-size: cover;
-            }
-            .hero {
-                padding: 20px;
-            }
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            .typing-container {
-                font-size: 1.3rem;
-            }
-            footer {
-                font-size: 0.9rem;
-            }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1 class="floating">Hello, I'm ANAND</h1>
-        <div class="typing-container">Official Personal Website</div>
-        <p>Welcome to my personal webpage. Let's create something awesome together.</p>
-        <a href="about.html" class="btn">View My Resume</a>
-
-        <!-- Social Media Links -->
-        <div class="social-links">
-            <a href="https://www.linkedin.com/in/anand-kola-6b7649297/" target="_blank">LinkedIn</a> |
-            <a href="https://github.com/yourprofile" target="_blank">GitHub</a>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0058)file:///C:/Users/user/Downloads/MPMC%20LAB%20PROGRAMS.html -->
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title></title>
+    </head>
+    <body>
+        <div style="page-break-before:always; page-break-after:always">
+            <div>
+                <p><b>                       MPMC LAB PROGRAMS <br>1.MULTI BYTE ADDITION <br></b>DATA SEGMENT <br></p>
+                <p>NUM1 DB 02H,03H,01H <br></p>
+                <p>NUM2 DB 01H,02H,01H <br></p>
+                <p>NUM3 DB 04H DUP (00) <br></p>
+                <p>COUNT EQU 03H <br></p>
+                <p>DATA ENDS <br></p>
+                <p>CODE SEGMENT <br></p>
+                <p>ASSUME CS:CODE,DS:DATA <br></p>
+                <p>START: MOV AX,DATA <br></p>
+                <p>MOV DS,AX <br></p>
+                <p>MOV CX,COUNT <br></p>
+                <p>LEA SI,NUM1 <br></p>
+                <p>LEA DI,NUM2 <br></p>
+                <p>LEA BX,NUM3 <br></p>
+                <p>MOV AX,0000H <br></p>
+                <p>NEXT: MOV AL,[SI] <br></p>
+                <p>ADD AL,[DI] <br></p>
+                <p>MOV[BX],AL <br></p>
+                <p>INC SI <br></p>
+                <p>INC DI <br></p>
+                <p>INC BX <br></p>
+                <p>DEC CX <br></p>
+                <p>JNZ NEXT <br></p>
+                <p>INT 03H <br></p>
+                <p>CODE ENDS <br></p>
+                <p>END START <br></p>
+                <p><b> <br></b></p>
+                <p><b> <br></b></p>
+                <p><b> <br></b></p>
+                <p><b> <br></b></p>
+                <p><b> <br></b></p>
+                <p><b> <br></b></p>
+                <p><b> <br></b></p>
+                <p><b> <br></b></p>
+                <p><b> <br></b></p>
+                <p><b> <br></b></p>
+                <p><b>2.MULTI BYTE SUBTRACTION <br></b>DATA SEGMENT <br></p>
+                <p>NUM1 DB 02H,03H,01H <br></p>
+                <p>NUM2 DB 01H,02H,01H <br></p>
+                <p>NUM3 DB 04H DUP (00) <br></p>
+                <p>COUNT EQU 03H <br></p>
+                <p>DATA ENDS <br></p>
+                <p>CODE SEGMENT <br></p>
+                <p>ASSUME CS:CODE,DS:DATA <br></p>
+                <p>START: MOV AX,DATA <br></p>
+                <p>MOV DS,AX <br></p>
+                <p>MOV CX,COUNT <br></p>
+                <p>LEA SI,NUM1 <br></p>
+                <p>LEA DI,NUM2 <br></p>
+                <p>LEA BX,NUM3 <br></p>
+                <p>MOV AX,0000H <br></p>
+                <p>NEXT: MOV AL,[SI] <br></p>
+                <p>SBB AL,[DI] <br></p>
+                <p>MOV[BX],AL <br></p>
+                <p>INC SI <br></p>
+                <p>INC DI <br></p>
+                <p>INC BX <br></p>
+                <p>DEC CX <br></p>
+                <p>JNZ NEXT <br></p>
+                <p>INT 03H <br></p>
+                <p>CODE ENDS <br></p>
+                <p>END START <br></p>
+                <p><b> <br></b></p>
+                <p><b> <br></b></p>
+                <p><b> <br></b></p>
+                <p><b> <br></b></p>
+                <p><b> <br></b></p>
+                <p><b> <br></b></p>
+                <p><b> <br></b></p>
+                <p><b> <br></b></p>
+                <p><b> </b></p>
+            </div>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 ANAND. All Rights Reserved.</p>
-    </footer>
-
-</body>
+        <div style="page-break-before:always; page-break-after:always">
+            <div>
+                <p><b>3.MULTI BYTE MULTIPLICATION <br></b>DATA SEGMENT <br></p>
+                <p>BYTES EQU 08H <br></p>
+                <p>NUM1 DB 05H, 0AH, 03H, 0CH, 05H, 06H, 07H, <br></p>
+                <p>NUM2 DB 04H, 06H, 04H, 05H, 32H, 12H, 19H <br></p>
+                <p>NUM3 DB 0EH DUP (00) <br></p>
+                <p>DATA ENDS <br></p>
+                <p>CODE SEGMENT <br></p>
+                <p>ASSUME CS:CODE,DS:DATA <br></p>
+                <p>START: MOV AX,DATA <br></p>
+                <p>MOV DS,AX <br></p>
+                <p>MOV CX,BYTES <br></p>
+                <p>LEA SI,NUM1 <br></p>
+                <p>LEA DI,NUM2 <br></p>
+                <p>LEA BX,NUM3 <br></p>
+                <p>MOV AX,00H <br></p>
+                <p>NEXT: MOV AL,[SI] <br></p>
+                <p>MOV DL,[DI] <br></p>
+                <p>MUL   DL <br></p>
+                <p>MOV [BX], AL <br></p>
+                <p>MOV [BX+1],AH <br></p>
+                <p>INC SI <br></p>
+                <p>INC DI <br></p>
+                <p>INC BX <br></p>
+                <p>INC BX <br></p>
+                <p>DEC CX <br></p>
+                <p>JNZ NEXT <br></p>
+                <p>INT 3H <br></p>
+                <p>CODE ENDS <br></p>
+                <p>END START <br></p>
+                <p><b> <br></b></p>
+                <p><b> <br></b></p>
+                <p><b> <br></b></p>
+                <p><b> <br></b></p>
+                <p><b> <br></b></p>
+                <p><b> <br></b></p>
+                <p><b> <br></b></p>
+                <p><b>4. MULTI BYTE DIVISION <br></b>DATA SEGMENT <br></p>
+                <p>BYTES EQU 08H <br></p>
+                <p>NUM2 DB 05H,15H,6CH,05H,06H,07H,04H,02H <br></p>
+                <p>NUM1 DW  <br>0020H,0056H,0140H,0057H,0032H,0012H,0019H,0013H <br></p>
+                <p>NUM3 DB 08H DUP (00) <br></p>
+                <p>DATA ENDS <br></p>
+                <p>CODE SEGMENT <br></p>
+                <p>ASSUME CS: CODE, DS: DATA <br></p>
+                <p>START: MOV AX, DATA <br></p>
+                <p>MOV DS, AX <br></p>
+                <p>MOV CL, BYTES <br></p>
+                <p>LEA SI, NUM1 <br></p>
+                <p>LEA DI, NUM2 <br></p>
+                <p>LEA BX, NUM3 <br></p>
+                <p>NEXT: MOV AX, 0000 <br></p>
+                <p>MOV AX,[SI] <br></p>
+                <p>MOV DL,[DI] <br></p>
+                <p>DIV DL <br></p>
+                <p>MOV [BX],AL <br></p>
+                <p>MOV [BX+1],AH <br></p>
+                <p>INC SI <br></p>
+                <p>INC SI <br></p>
+                <p>INC DI <br></p>
+                <p>INC BX <br></p>
+                <p>INC BX <br></p>
+                <p>DEC CL <br></p>
+                <p>JNZ NEXT <br></p>
+                <p>INT 03H <br></p>
+                <p>CODE ENDS <br></p>
+                <p>END START <br></p>
+                <p> <br></p>
+                <p> <br></p>
+                <p> <br></p>
+                <p> <br></p>
+                <p> </p>
+            </div>
+        </div>
+        <div style="page-break-before:always; page-break-after:always">
+            <div>
+                <p> <br></p>
+                <p><b>5.SIGNED MULTI BYTE MULTIPLICATION <br></b>DATA SEGMENT <br></p>
+                <p>X DW 0FFFEH <br></p>
+                <p>Y DW 0003H <br></p>
+                <p>DATA ENDS <br></p>
+                <p>CODE SEGMENT <br></p>
+                <p>ASSUME CS:CODE,DS:DATA <br></p>
+                <p>START:MOV AX,DATA <br></p>
+                <p>MOV DS,AX <br></p>
+                <p>MOV AX,X <br></p>
+                <p>MOV BX,Y <br></p>
+                <p>IMUL BX <br></p>
+                <p>INT 03 <br></p>
+                <p>CODE ENDS <br></p>
+                <p>END START <br></p>
+                <p><b>6.SIGNED MULTI BYTE DIVISION <br></b>DATA SEGMENT <br></p>
+                <p>X DW 0FFF7H <br></p>
+                <p>Y DB 03H <br></p>
+                <p>DATA ENDS <br></p>
+                <p>CODE SEGMENT <br></p>
+                <p>ASSUME CS:CODE,DS:DATA <br></p>
+                <p>START:MOV AX,DATA <br></p>
+                <p>MOV DS,AX <br></p>
+                <p>MOV AX,X <br></p>
+                <p>MOV BL,Y <br></p>
+                <p>IDIV BL <br></p>
+                <p>INT 03 <br></p>
+                <p>CODE ENDS <br></p>
+                <p>END START <br></p>
+                <p><b> <br></b></p>
+                <p><b> <br></b></p>
+                <p><b> <br></b></p>
+                <p><b> <br></b></p>
+                <p><b> <br></b></p>
+                <p><b> <br></b></p>
+                <p><b> <br></b></p>
+                <p><b>7.ASCII ADDITION <br></b>CODE SEGMENT <br></p>
+                <p>ASSUME CS:CODE <br></p>
+                <p>START:MOV AL, 5 <br></p>
+                <p>MOV Bl, 9 <br></p>
+                <p>ADD AL, BL <br></p>
+                <p>AAA <br></p>
+                <p>OR AX, 3030H <br></p>
+                <p>INT 03H <br></p>
+                <p>CODE ENDS  <br></p>
+                <p>END STARTS <br></p>
+                <p><b>8.ASCII SUBTRACTION <br></b>CODE SEGMENT <br></p>
+                <p>ASSUME CS:CODE <br></p>
+                <p>START:MOV AL, 8 <br></p>
+                <p>MOV Bl, 3 <br></p>
+                <p>SUB AL, BL <br></p>
+                <p>AAS <br></p>
+                <p>OR AX, 3030H <br></p>
+                <p>INT 03H <br></p>
+                <p>CODE ENDS  <br></p>
+                <p>END STARTS <br></p>
+                <p><b>9.ASCII MULTIPLICATION <br></b>CODE SEGMENT <br></p>
+                <p>ASSUME CS:CODE <br></p>
+                <p>START:MOV AL, 4 <br></p>
+                <p>MOV Bl, 2 <br></p>
+                <p>MUL BL <br></p>
+                <p>AAM <br></p>
+                <p>OR AX, 3030H <br></p>
+                <p>INT 03H <br></p>
+                <p>CODE ENDS  <br></p>
+                <p>END STARTS <br></p>
+                <p> <br></p>
+                <p> <br></p>
+                <p> </p>
+            </div>
+        </div>
+        <div style="page-break-before:always; page-break-after:always">
+            <div>
+                <p> <br></p>
+                <p><b>10.ASCII DIVISION <br></b>CODE SEGMENT <br></p>
+                <p>ASSUME CS:CODE <br></p>
+                <p>START:MOV AX,0603H <br></p>
+                <p>MOV CH, 09H <br></p>
+                <p>AAD <br></p>
+                <p>DIV CH <br></p>
+                <p>OR AX, 3030H <br></p>
+                <p>INT 03H <br></p>
+                <p>CODE ENDS  <br></p>
+                <p>END STARTS <br></p>
+                <p><b>11.Shift Operation        <br></b>  DATA SEGMENT  <br></p>
+                <p>X DW 0E284H <br></p>
+                <p>DATA ENDS CODE SEGMENT  <br></p>
+                <p>ASSUME CS:CODE,DS:DATA <br></p>
+                <p>START:MOV AX,DATA <br></p>
+                <p>MOV DS,AX <br></p>
+                <p>MOV AX,X <br></p>
+                <p>MOV CL,04H <br></p>
+                <p>SHL AX,CL <br></p>
+                <p>INT 03 <br></p>
+                <p>CODE ENDS <br></p>
+                <p>END START <br></p>
+                <p><b>12.Rotate Operation                                  </b>                                                                                                                                           <br>DATA SEGMENT  <br></p>
+                <p>X DW 0E284H <br></p>
+                <p>DATA ENDS CODE SEGMENT  <br></p>
+                <p>ASSUME CS:CODE,DS:DATA <br></p>
+                <p>START:MOV AX,DATA <br></p>
+                <p>MOV DS,AX <br></p>
+                <p>MOV AX,X <br></p>
+                <p>MOV CL,04H <br></p>
+                <p>ROR AX,CL <br></p>
+                <p>INT 03 <br></p>
+                <p>CODE ENDS <br></p>
+                <p>END START <br></p>
+                <p> <br></p>
+                <p><b>13.Converting packed BCD to unpacked BCD <br></b>CODE SEGMENT <br></p>
+                <p>ASSUME CS: CODE <br></p>
+                <p>START:MOV AL, 45H <br></p>
+                <p>MOV AH, AL <br></p>
+                <p>MOV CL,04H <br></p>
+                <p>ROR AH, CL <br></p>
+                <p>AND AX, 0F0FH <br></p>
+                <p>INT 3 <br></p>
+                <p>CODE ENDS <br></p>
+                <p>END STARTS   <br></p>
+                <p> <br></p>
+                <p> <br></p>
+                <p><b>14.Converting BCD to ASCII <br></b>DATA SEGMENT <br></p>
+                <p>NUM DB 45H <br></p>
+                <p>DATA ENDS <br></p>
+                <p>CODE SEGMENT <br></p>
+                <p>ASSUME CS:CODE, DS:DATA <br></p>
+                <p>START: MOV AX,DATA <br></p>
+                <p>MOV DS,AX <br></p>
+                <p>MOV AL,NUM <br></p>
+                <p>MOV AH,AL <br></p>
+                <p>MOV CL,04H <br></p>
+                <p>SHR AH,CL <br></p>
+                <p>AND AX,0F0FH <br></p>
+                <p>OR AX,3030H <br></p>
+                <p>INT 03H <br></p>
+                <p>CODE ENDS <br></p>
+                <p>END START <br></p>
+                <p> <br></p>
+                <p> <br></p>
+                <p> <br></p>
+                <p> <br></p>
+                <p> </p>
+            </div>
+        </div>
+        <div style="page-break-before:always; page-break-after:always">
+            <div>
+                <p><b>15.Moving a Block of strings                                                                                                                                                              <br></b>DATA SEGMENT <br></p>
+                <p>SRC DB ‘MICROPROCESSOR’ <br></p>
+                <p>DB 10 DUP (?) <br></p>
+                <p>DST DB 20 DUP (0) <br></p>
+                <p>DATA ENDS <br></p>
+                <p>CODE SEGMENT <br></p>
+                <p>ASSUME CS: CODE, DS: DATA, ES: DATA <br></p>
+                <p>START: MOV AX, DATA <br></p>
+                <p>MOV DS, AX <br></p>
+                <p>MOV ES, AX <br></p>
+                <p>LEA SI, SRC <br></p>
+                <p>LEA DI, DST <br></p>
+                <p>MOV CX, 20 <br></p>
+                <p>CLD <br></p>
+                <p>REP <br></p>
+                <p>MOVSB <br></p>
+                <p>INT 3H <br></p>
+                <p>CODE ENDS <br></p>
+                <p>END START <br></p>
+                <p><b>16.String reversal                                                                                                                                                                                <br></b>DATA SEGMENT<b> <br></b></p>
+                <p>ORG 2000H <br></p>
+                <p>SRC DB ‘MICROPROCESSOR$’ <br></p>
+                <p>COUNT EQU ($-SRC) <br></p>
+                <p>DEST DB ? <br></p>
+                <p>DATA ENDS <br></p>
+                <p>CODE SEGMENT <br></p>
+                <p>ASSUME CS: CODE,DS:DATA <br></p>
+                <p>START: MOV AX,DATA <br></p>
+                <p>MOV DS, AX <br></p>
+                <p>MOV CX, COUNT <br></p>
+                <p>LEA SI,SRC <br></p>
+                <p>LEA DI,DEST <br></p>
+                <p>ADD SI,CX <br></p>
+                <p>DEC CX <br></p>
+                <p>BACK: MOV AL,[SI] <br></p>
+                <p>MOV [DI],AL <br></p>
+                <p>DEC SI <br></p>
+                <p>INC DI <br></p>
+                <p>DEC CX <br></p>
+                <p>JNZ BACK <br></p>
+                <p>INT 3H <br></p>
+                <p>CODE ENDS <br></p>
+                <p>END START <br></p>
+                <p><b>17.Sorting16-Bit unsigned values in Ascending <br>order <br></b>DATA SEGMENT <br></p>
+                <p>NUM  DW 0034H, 0056H, 0015H, 0038H, 0093H <br></p>
+                <p>DATA ENDS <br></p>
+                <p>CODE SEGMENT <br></p>
+                <p>ASSUME CS: CODE, DS: DATA <br></p>
+                <p>START: MOV AX, DATA <br></p>
+                <p>MOV DS, AX <br></p>
+                <p>MOV CL,05H <br></p>
+                <p>L1: MOV CH,CL <br></p>
+                <p>MOV SI, OFFSET NUM <br></p>
+                <p>L2: MOV AX,[SI] <br></p>
+                <p>CMP  AX, 2[SI] <br></p>
+                <p>JC  L3 <br></p>
+                <p>XCHG AX,2[SI] <br></p>
+                <p>XCHG AX,[SI] <br></p>
+                <p>L3:INC SI <br></p>
+                <p> INC SI <br></p>
+                <p> DEC CH <br></p>
+                <p>  JNZ L2 <br></p>
+                <p>  DEC CL <br></p>
+                <p>  JNZ L1 <br></p>
+                <p>MOV AX, 4C00H <br></p>
+                <p>INT 21H <br></p>
+                <p>CODE ENDS <br></p>
+                <p>END START <br></p>
+                <p> <br></p>
+                <p> <br></p>
+                <p> </p>
+            </div>
+        </div>
+        <div style="page-break-before:always; page-break-after:always">
+            <div>
+                <p> <br></p>
+                <p><b>18.Sorting 16-Bit Unsigned values in descending <br>order <br></b>DATA SEGMENT <br></p>
+                <p>NUM DW     0034H,0056H,0015H,0038H,0093H, <br></p>
+                <p>CNT EQU 05H <br></p>
+                <p>DATA ENDS <br></p>
+                <p>CODE SEGMENT <br></p>
+                <p>ASSUME CS:CODE,DS:DATA,ES:DATA <br></p>
+                <p>START: MOV AX,DATA <br></p>
+                <p>MOV DS,AX <br></p>
+                <p>MOV CX,CNT <br></p>
+                <p>LOOP1:MOV CH,CL <br></p>
+                <p>MOV SI,NUM <br></p>
+                <p>LOOP2:MOV AX,[SI] <br></p>
+                <p>CMP AX,2[SI] <br></p>
+                <p>JNC LOOP3 <br></p>
+                <p>XCHG AX,2[SI] <br></p>
+                <p>XCHG AX,[SI] <br></p>
+                <p>LOOP3:INC SI <br></p>
+                <p>INC SI <br></p>
+                <p>DEC CH <br></p>
+                <p>JNZ LOOP2 <br></p>
+                <p>DEC CL <br></p>
+                <p>JNZ LOOP1 <br></p>
+                <p>INT 03 <br></p>
+                <p>CODE ENDS <br></p>
+                <p>END START <br></p>
+                <p><b>19.READING AND WRITING ON A PARALLEL PORT <br></b>MOV P0, #66H <br></p>
+                <p>MOV A, P0 <br></p>
+                <p>MOV P1, #55H <br></p>
+                <p>MOV B, P1 <br></p>
+                <p>MOV P0, #00H <br></p>
+                <p>MOV P0, #75H <br></p>
+                <p>END <br></p>
+                <p> <br></p>
+                <p><b>20.TIMER IN DIFFERENT MODES <br></b>MOV TMOD, #01H <br></p>
+                <p>MOV TL0, #0F2H <br></p>
+                <p>MOV TH0, #0FFH <br></p>
+                <p>HERE:CPL P1.5 <br></p>
+                <p>             ACALL DELAY <br></p>
+                <p>             SJUMP HERE <br></p>
+                <p>DELAY:SETB TR0 <br></p>
+                <p>AGAIN:JNB TF0,AGAIN <br></p>
+                <p>               CLR TR0 <br></p>
+                <p>                CLR TF0 <br></p>
+                <p>                RET <br></p>
+                <p>                LCALL 0003 <br></p>
+                <p>                END <br></p>
+                <p><b>21.SERIAL COMMUNICATION IMPLEMENTATION <br></b>MOV TMOD, #20H <br></p>
+                <p>MOV TM1, #-3 <br></p>
+                <p>MOV SCON, #50 <br></p>
+                <p>SETB TR1 <br></p>
+                <p>AGAIN:MOV A, #”Y” <br></p>
+                <p>ACALL TRANS <br></p>
+                <p>AGAIN:MOV A, #”E” <br></p>
+                <p>ACALL TRANS <br></p>
+                <p>AGAIN:MOV A, #”S” <br></p>
+                <p>ACALL TRANS <br></p>
+                <p>S JUMP AGAIN <br></p>
+                <p>TRANS:MOV SBUF, A <br></p>
+                <p>HERE: JNB TI, HERE <br></p>
+                <p>             CLR TI <br></p>
+                <p>              RET <br></p>
+                <p> <br></p>
+                <p> <br></p>
+                <p> <br></p>
+                <p> <br></p>
+                <p> <br></p>
+                <p> <br></p>
+                <p> </p>
+            </div>
+        </div>
+        <div style="page-break-before:always; page-break-after:always">
+            <div>
+                <p><b>22.SWITCHES AND LEDS <br>i) </b>void main () { <br></p>
+                <p>do { <br></p>
+                <p>p0 = 0X00; <br></p>
+                <p>p1 = 0X00; <br></p>
+                <p>p2 = 0X00; <br></p>
+                <p>p3 = 0X00; <br></p>
+                <p>delay_ms(1000); <br></p>
+                <p>p0 = 0XFF; <br></p>
+                <p>p1 = 0XFF; <br></p>
+                <p>p2 = 0XFF; <br></p>
+                <p>p3 = 0XFF; <br></p>
+                <p>delay_ms(1000); <br></p>
+                <p>} while(1); <br></p>
+                <p>} <br></p>
+                <p><b>ii) </b>void main() { <br></p>
+                <p>p0=255; <br></p>
+                <p>p2=0XAA <br></p>
+                <p>do{ <br></p>
+                <p>if(button_pin==1){ <br></p>
+                <p>p1=0X55; <br></p>
+                <p>p2=0XAA; <br></p>
+                <p>p3=0X55; <br></p>
+                <p>else{ <br></p>
+                <p>p1=0X55; <br></p>
+                <p>p2=0XAA; <br></p>
+                <p>p3=0X55; <br></p>
+                <p>} while(1); <br></p>
+                <p>} <br></p>
+                <p> <br></p>
+                <p> <br></p>
+                <p> <br></p>
+                <p> <br></p>
+                <p> <br></p>
+                <p> <br></p>
+                <p> <br></p>
+                <p> <br></p>
+                <p><b>23.SEVEN SEGMENT DISPLAY <br></b>// 7-segment display codes for digits 0-9 (Common Anode – <br>Inverted) <br></p>
+                <p>unsigned char segment_code[] = {0xC0, 0xF9, 0xA4, 0xB0, <br>0x99,  <br></p>
+                <p>                                0x92, 0x82, 0xF8, 0x80, 0x90}; <br></p>
+                <p> <br></p>
+                <p>// Delay function <br></p>
+                <p>void delay(unsigned int ms) { <br></p>
+                <p>    unsigned int i, j; <br></p>
+                <p>    for (i = 0; i &lt; ms; i++) <br></p>
+                <p>        for (j = 0; j &lt; 1275; j++);  // Approximate 1ms delay <br></p>
+                <p>} <br></p>
+                <p>void main() { <br></p>
+                <p>    int i; <br></p>
+                <p> <br></p>
+                <p>    while (1) {  // Infinite loop <br></p>
+                <p>        for (i = 0; i &lt; 10; i++) {  // Display digits 0-9 <br></p>
+                <p>            P2 = segment_code[i];  // Send segment code to Port 2 <br></p>
+                <p>            delay(1000);  // Delay for 1 second <br></p>
+                <p>        } <br></p>
+                <p>    } <br></p>
+                <p>} <br></p>
+                <p><b>24.STEPPER MOTOR <br></b>VOID MAIN() { <br></p>
+                <p>WHILE(1) <br></p>
+                <p>{ <br></p>
+                <p>P2=0X0L; <br></p>
+                <p>DELAY_MS(50); <br></p>
+                <p>P2=0X06; <br></p>
+                <p>DELAY_MS(50); <br></p>
+                <p>P2=0X03; <br></p>
+                <p>DELAY_MS(50); <br></p>
+                <p>P2=0X09; <br></p>
+                <p>DELAY_MS(50); <br></p>
+                <p>} <br></p>
+                <p>} <br></p>
+                <p><b> </b></p>
+            </div>
+        </div>
+        <div style="page-break-before:always; page-break-after:always">
+            <div>
+                <p><b> <br></b></p>
+                <p> <br></p>
+                <p> <br></p>
+                <p> <br></p>
+                <p> <br></p>
+                <p> <br></p>
+                <p> <br></p>
+                <p> <br></p>
+                <p> <br></p>
+                <p> <br></p>
+                <p> <br></p>
+                <p> <br></p>
+                <p> <br></p>
+                <p> <br></p>
+                <p> </p>
+            </div>
+        </div>
+    </body>
 </html>
