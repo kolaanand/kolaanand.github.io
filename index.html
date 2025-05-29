@@ -35,8 +35,7 @@
       margin: 15px 0 5px;
       font-weight: bold;
     }
-    input[type="number"],
-    select {
+    input[type="number"] {
       width: 100%;
       padding: 10px;
       font-size: 16px;
@@ -80,19 +79,14 @@
   </header>
 
   <div class="container">
-    <label for="monthlyBill">Monthly Electricity Bill (₹):</label>
-    <input type="number" id="monthlyBill" placeholder="e.g. 2000"/>
+    <label for="monthlyBill">Monthly Electricity Units:</label>
+    <input type="number" id="monthlyBill" placeholder="e.g. 180" min="0" />
 
-    <label for="state">Select State:</label>
-    <select id="state">
-      <option value="Delhi">Delhi</option>
-      <option value="Maharashtra">Maharashtra</option>
-      <option value="Tamil Nadu">Tamil Nadu</option>
-      <!-- Add more as needed -->
-    </select>
+    <label for="roofArea">Total Available Rooftop Area (sq. meters):</label>
+    <input type="number" id="roofArea" placeholder="e.g. 50" min="0" />
 
-    <label for="roofArea">Available Roof Area (sq. meters):</label>
-    <input type="number" id="roofArea" placeholder="e.g. 50"/>
+    <label for="solarCapacity">Required Solar Plant Capacity (in kW):</label>
+    <input type="number" id="solarCapacity" placeholder="Auto-calculated or enter manually" min="0" step="0.01" />
 
     <button onclick="calculate()">Calculate</button>
 
@@ -100,32 +94,84 @@
   </div>
 
   <footer>
-    &copy; 2025 Solar Yojana. All Rights Reserved.
+    &copy; 2025 Solar team. All Rights Reserved.
   </footer>
 
   <script>
-    function calculate() {
-      const bill = parseFloat(document.getElementById("monthlyBill").value);
-      const area = parseFloat(document.getElementById("roofArea").value);
-      const resultBox = document.getElementById("result");
+    const unitsInput = document.getElementById("monthlyBill");
+    const areaInput = document.getElementById("roofArea");
+    const capacityInput = document.getElementById("solarCapacity");
+    const resultBox = document.getElementById("result");
 
-      if (!bill || !area) {
+    let manualCapacityChange = false;
+
+    function calculateAutoCapacity() {
+      const units = parseFloat(unitsInput.value);
+      const area = parseFloat(areaInput.value);
+
+      if (units > 0 && area > 0) {
+        const calculatedCapacity = Math.min(units / 120, area * 0.1);
+        if (!manualCapacityChange) {
+          capacityInput.value = calculatedCapacity.toFixed(2);
+        }
+      } else {
+        if (!manualCapacityChange) {
+          capacityInput.value = "";
+        }
+      }
+    }
+
+    // Whenever Monthly Units or Roof Area changes, update capacity automatically unless manually edited
+    unitsInput.addEventListener("input", () => {
+      manualCapacityChange = false;
+      calculateAutoCapacity();
+    });
+
+    areaInput.addEventListener("input", () => {
+      manualCapacityChange = false;
+      calculateAutoCapacity();
+    });
+
+    // If user edits capacity manually, flag it so we stop auto-updating it until next input change
+    capacityInput.addEventListener("input", () => {
+      manualCapacityChange = true;
+    });
+
+    function calculate() {
+      const units = parseFloat(unitsInput.value);
+      const area = parseFloat(areaInput.value);
+      let capacity = parseFloat(capacityInput.value);
+
+      if (!units || units <= 0 || !area || area <= 0) {
         resultBox.style.display = "block";
-        resultBox.innerHTML = "<strong>Please enter valid values.</strong>";
+        resultBox.innerHTML = "<strong>Please enter valid positive values for Monthly Units and Rooftop Area.</strong>";
         return;
       }
 
-      const capacity = Math.min(area * 0.1, bill / 600); // Sample logic
-      const cost = capacity * 50000; // ₹ per kW
-      const subsidy = cost * 0.4; // 40% subsidy
+      if (!capacity || capacity <= 0) {
+        // If capacity not entered manually, calculate it
+        capacity = Math.min(units / 120, area * 0.1);
+      }
+
+      // Ensure capacity does not exceed max possible based on roof area
+      const maxCapacity = area * 0.1;
+      if (capacity > maxCapacity) {
+        resultBox.style.display = "block";
+        resultBox.innerHTML = `<strong>Entered solar capacity (${capacity.toFixed(2)} kW) exceeds max possible based on roof area (${maxCapacity.toFixed(2)} kW). Please adjust.</strong>`;
+        return;
+      }
+
+      const cost = capacity * 50000;
+      const subsidy = cost * 0.4;
       const netCost = cost - subsidy;
 
       resultBox.style.display = "block";
       resultBox.innerHTML = `
-        <strong>Estimated Solar Capacity:</strong> ${capacity.toFixed(2)} kW<br/>
+        <strong>Estimated Monthly Consumption:</strong> ${units.toFixed(0)} units<br/>
+        <strong>Required Solar Plant Capacity (in kW):</strong> ${capacity.toFixed(2)} kW<br/>
         <strong>Estimated Cost:</strong> ₹${cost.toLocaleString()}<br/>
-        <strong>Subsidy:</strong> ₹${subsidy.toLocaleString()}<br/>
-        <strong>Net Payable:</strong> ₹${netCost.toLocaleString()}
+        <strong>Government Subsidy (40%):</strong> ₹${subsidy.toLocaleString()}<br/>
+        <strong>Net Payable Amount:</strong> ₹${netCost.toLocaleString()}
       `;
     }
   </script>
