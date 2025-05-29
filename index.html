@@ -5,80 +5,122 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Solar Rooftop Calculator</title>
   <style>
+    /* Neumorphic 3D style base */
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #fdf6ed;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #e0e5ec;
       color: #333;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background-color: #e2671f;
-      padding: 20px;
-      text-align: center;
-      color: white;
-    }
-    h1 {
-      margin: 0;
-      font-size: 28px;
+      margin: 0; padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
     .container {
-      max-width: 700px;
-      margin: 40px auto;
-      background: white;
-      padding: 30px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      border-radius: 8px;
+      background: #e0e5ec;
+      border-radius: 20px;
+      box-shadow:
+        8px 8px 15px #a3b1c6,
+        -8px -8px 15px #ffffff;
+      padding: 40px;
+      width: 380px;
+      text-align: center;
+    }
+    header h1 {
+      margin-bottom: 30px;
+      font-weight: 700;
+      color: #334e68;
+      text-shadow:
+        1px 1px 2px rgba(255,255,255,0.8),
+        -1px -1px 2px rgba(0,0,0,0.1);
     }
     label {
       display: block;
-      margin: 15px 0 5px;
-      font-weight: bold;
+      text-align: left;
+      margin: 20px 0 8px;
+      font-weight: 600;
+      color: #4a6fa5;
+      user-select: none;
     }
     input[type="number"] {
       width: 100%;
-      padding: 10px;
+      padding: 14px 20px;
       font-size: 16px;
-      margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
+      border-radius: 15px;
+      border: none;
+      background: #e0e5ec;
+      box-shadow:
+        inset 6px 6px 8px #a3b1c6,
+        inset -6px -6px 8px #ffffff;
+      transition: box-shadow 0.3s ease;
+    }
+    input[type="number"]:focus {
+      outline: none;
+      box-shadow:
+        inset 2px 2px 5px #7b8ca4,
+        inset -2px -2px 5px #f7f9fc;
     }
     button {
-      background-color: #ff7a00;
-      color: white;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 6px;
-      font-size: 16px;
-      cursor: pointer;
+      margin-top: 30px;
       width: 100%;
-      transition: background-color 0.3s ease;
+      padding: 16px 0;
+      font-size: 18px;
+      font-weight: 700;
+      border-radius: 20px;
+      border: none;
+      cursor: pointer;
+      color: #334e68;
+      background: linear-gradient(145deg, #a6b8ff, #6577ff);
+      box-shadow:
+        5px 5px 10px #4864bf,
+        -5px -5px 10px #b3c1ff;
+      transition: all 0.3s ease;
+      user-select: none;
     }
     button:hover {
-      background-color: #e2671f;
+      background: linear-gradient(145deg, #6577ff, #a6b8ff);
+      box-shadow:
+        2px 2px 6px #384ea3,
+        -2px -2px 6px #c7d1ff;
+      color: white;
     }
     .result {
-      margin-top: 20px;
-      padding: 15px;
-      background-color: #fff9f0;
-      border-left: 5px solid #e2671f;
+      margin-top: 35px;
+      padding: 25px 20px;
+      border-radius: 20px;
+      background: #e0e5ec;
+      box-shadow:
+        inset 6px 6px 8px #a3b1c6,
+        inset -6px -6px 8px #ffffff;
+      font-size: 20px;
+      font-weight: 700;
+      color: #4a6fa5;
+      user-select: text;
+      min-height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
     }
     footer {
+      position: fixed;
+      bottom: 15px;
+      width: 100%;
       text-align: center;
-      padding: 20px;
       font-size: 14px;
-      background: #eee;
-      color: #555;
+      color: #7a8aad;
+      user-select: none;
+      font-weight: 600;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>Solar Rooftop Calculator</h1>
-  </header>
-
   <div class="container">
+    <header>
+      <h1>Solar Rooftop Calculator</h1>
+    </header>
+
     <label for="monthlyBill">Monthly Electricity Units:</label>
     <input type="number" id="monthlyBill" placeholder="e.g. 180" min="0" />
 
@@ -121,7 +163,6 @@
       }
     }
 
-    // Whenever Monthly Units or Roof Area changes, update capacity automatically unless manually edited
     unitsInput.addEventListener("input", () => {
       manualCapacityChange = false;
       calculateAutoCapacity();
@@ -132,7 +173,6 @@
       calculateAutoCapacity();
     });
 
-    // If user edits capacity manually, flag it so we stop auto-updating it until next input change
     capacityInput.addEventListener("input", () => {
       manualCapacityChange = true;
     });
@@ -143,36 +183,27 @@
       let capacity = parseFloat(capacityInput.value);
 
       if (!units || units <= 0 || !area || area <= 0) {
-        resultBox.style.display = "block";
-        resultBox.innerHTML = "<strong>Please enter valid positive values for Monthly Units and Rooftop Area.</strong>";
+        resultBox.style.display = "flex";
+        resultBox.textContent = "Please enter valid positive values for Monthly Units and Rooftop Area.";
         return;
       }
 
       if (!capacity || capacity <= 0) {
-        // If capacity not entered manually, calculate it
         capacity = Math.min(units / 120, area * 0.1);
       }
 
-      // Ensure capacity does not exceed max possible based on roof area
       const maxCapacity = area * 0.1;
       if (capacity > maxCapacity) {
-        resultBox.style.display = "block";
-        resultBox.innerHTML = `<strong>Entered solar capacity (${capacity.toFixed(2)} kW) exceeds max possible based on roof area (${maxCapacity.toFixed(2)} kW). Please adjust.</strong>`;
+        resultBox.style.display = "flex";
+        resultBox.textContent = `Entered solar capacity (${capacity.toFixed(2)} kW) exceeds max possible based on roof area (${maxCapacity.toFixed(2)} kW). Please adjust.`;
         return;
       }
 
       const cost = capacity * 50000;
       const subsidy = cost * 0.4;
-      const netCost = cost - subsidy;
 
-      resultBox.style.display = "block";
-      resultBox.innerHTML = `
-        <strong>Estimated Monthly Consumption:</strong> ${units.toFixed(0)} units<br/>
-        <strong>Required Solar Plant Capacity (in kW):</strong> ${capacity.toFixed(2)} kW<br/>
-        <strong>Estimated Cost:</strong> ₹${cost.toLocaleString()}<br/>
-        <strong>Government Subsidy (40%):</strong> ₹${subsidy.toLocaleString()}<br/>
-        <strong>Net Payable Amount:</strong> ₹${netCost.toLocaleString()}
-      `;
+      resultBox.style.display = "flex";
+      resultBox.innerHTML = `<strong>Subsidy Support:</strong> ₹${subsidy.toLocaleString()}`;
     }
   </script>
 
