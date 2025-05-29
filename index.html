@@ -2,105 +2,89 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Solar Rooftop Calculator</title>
   <style>
-    /* Neumorphic 3D style base */
+    /* Reset & base */
+    * {
+      box-sizing: border-box;
+    }
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #e0e5ec;
-      color: #333;
-      margin: 0; padding: 0;
+      background-color: #f5f7fa;
+      margin: 0;
+      padding: 0;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
+      color: #2c3e50;
     }
     .container {
-      background: #e0e5ec;
-      border-radius: 20px;
-      box-shadow:
-        8px 8px 15px #a3b1c6,
-        -8px -8px 15px #ffffff;
-      padding: 40px;
-      width: 380px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      width: 400px;
+      padding: 40px 35px;
       text-align: center;
     }
     header h1 {
-      margin-bottom: 30px;
+      margin: 0 0 30px 0;
       font-weight: 700;
-      color: #334e68;
-      text-shadow:
-        1px 1px 2px rgba(255,255,255,0.8),
-        -1px -1px 2px rgba(0,0,0,0.1);
+      font-size: 1.8rem;
+      color: #34495e;
     }
     label {
       display: block;
-      text-align: left;
-      margin: 20px 0 8px;
       font-weight: 600;
-      color: #4a6fa5;
+      text-align: left;
+      margin-bottom: 8px;
+      color: #34495e;
       user-select: none;
     }
     input[type="number"] {
       width: 100%;
-      padding: 14px 20px;
+      padding: 12px 15px;
       font-size: 16px;
-      border-radius: 15px;
-      border: none;
-      background: #e0e5ec;
-      box-shadow:
-        inset 6px 6px 8px #a3b1c6,
-        inset -6px -6px 8px #ffffff;
-      transition: box-shadow 0.3s ease;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      transition: border-color 0.3s ease;
+      margin-bottom: 20px;
     }
     input[type="number"]:focus {
+      border-color: #2980b9;
       outline: none;
-      box-shadow:
-        inset 2px 2px 5px #7b8ca4,
-        inset -2px -2px 5px #f7f9fc;
     }
     button {
-      margin-top: 30px;
       width: 100%;
-      padding: 16px 0;
+      padding: 15px 0;
       font-size: 18px;
       font-weight: 700;
-      border-radius: 20px;
+      background-color: #2980b9;
+      color: white;
       border: none;
+      border-radius: 10px;
       cursor: pointer;
-      color: #334e68;
-      background: linear-gradient(145deg, #a6b8ff, #6577ff);
-      box-shadow:
-        5px 5px 10px #4864bf,
-        -5px -5px 10px #b3c1ff;
-      transition: all 0.3s ease;
+      transition: background-color 0.3s ease;
       user-select: none;
     }
     button:hover {
-      background: linear-gradient(145deg, #6577ff, #a6b8ff);
-      box-shadow:
-        2px 2px 6px #384ea3,
-        -2px -2px 6px #c7d1ff;
-      color: white;
+      background-color: #1f6391;
     }
     .result {
       margin-top: 35px;
-      padding: 25px 20px;
-      border-radius: 20px;
-      background: #e0e5ec;
-      box-shadow:
-        inset 6px 6px 8px #a3b1c6,
-        inset -6px -6px 8px #ffffff;
-      font-size: 20px;
+      padding: 20px;
+      background-color: #dff0d8;
+      color: #3c763d;
       font-weight: 700;
-      color: #4a6fa5;
-      user-select: text;
+      border-radius: 10px;
       min-height: 56px;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
+      box-shadow: inset 0 0 5px rgba(60, 118, 61, 0.2);
+      user-select: text;
     }
     footer {
       position: fixed;
@@ -108,9 +92,9 @@
       width: 100%;
       text-align: center;
       font-size: 14px;
-      color: #7a8aad;
-      user-select: none;
+      color: #95a5a6;
       font-weight: 600;
+      user-select: none;
     }
   </style>
 </head>
@@ -184,6 +168,9 @@
 
       if (!units || units <= 0 || !area || area <= 0) {
         resultBox.style.display = "flex";
+        resultBox.style.backgroundColor = "#f8d7da";
+        resultBox.style.color = "#721c24";
+        resultBox.style.boxShadow = "inset 0 0 5px rgba(114, 28, 36, 0.2)";
         resultBox.textContent = "Please enter valid positive values for Monthly Units and Rooftop Area.";
         return;
       }
@@ -195,14 +182,20 @@
       const maxCapacity = area * 0.1;
       if (capacity > maxCapacity) {
         resultBox.style.display = "flex";
+        resultBox.style.backgroundColor = "#f8d7da";
+        resultBox.style.color = "#721c24";
+        resultBox.style.boxShadow = "inset 0 0 5px rgba(114, 28, 36, 0.2)";
         resultBox.textContent = `Entered solar capacity (${capacity.toFixed(2)} kW) exceeds max possible based on roof area (${maxCapacity.toFixed(2)} kW). Please adjust.`;
         return;
       }
 
-      const cost = capacity * 50000;
-      const subsidy = cost * 0.4;
+      const cost = capacity * 50000; // ₹50,000 per kW approx.
+      const subsidy = cost * 0.4;    // 40% subsidy
 
       resultBox.style.display = "flex";
+      resultBox.style.backgroundColor = "#dff0d8";
+      resultBox.style.color = "#3c763d";
+      resultBox.style.boxShadow = "inset 0 0 5px rgba(60, 118, 61, 0.2)";
       resultBox.innerHTML = `<strong>Subsidy Support:</strong> ₹${subsidy.toLocaleString()}`;
     }
   </script>
