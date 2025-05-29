@@ -1,204 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
   <title>Solar Rooftop Calculator</title>
   <style>
-    /* Reset & base */
-    * {
-      box-sizing: border-box;
-    }
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f5f7fa;
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
       margin: 0;
       padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      color: #2c3e50;
     }
     .container {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
-      width: 400px;
-      padding: 40px 35px;
-      text-align: center;
+      max-width: 1100px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px 40px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      border-radius: 8px;
     }
-    header h1 {
-      margin: 0 0 30px 0;
-      font-weight: 700;
-      font-size: 1.8rem;
-      color: #34495e;
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    .form-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+    .form-group {
+      flex: 1;
+      min-width: 300px;
     }
     label {
       display: block;
-      font-weight: 600;
-      text-align: left;
-      margin-bottom: 8px;
-      color: #34495e;
-      user-select: none;
+      margin-top: 10px;
+      font-weight: bold;
     }
-    input[type="number"] {
+    input, select {
       width: 100%;
-      padding: 12px 15px;
-      font-size: 16px;
-      border: 2px solid #ccc;
-      border-radius: 8px;
-      transition: border-color 0.3s ease;
-      margin-bottom: 20px;
+      padding: 8px;
+      margin-top: 5px;
+      font-size: 15px;
     }
-    input[type="number"]:focus {
-      border-color: #2980b9;
-      outline: none;
-    }
-    button {
-      width: 100%;
-      padding: 15px 0;
-      font-size: 18px;
-      font-weight: 700;
-      background-color: #2980b9;
+    .btn {
+      background: darkorange;
       color: white;
+      padding: 12px 30px;
       border: none;
-      border-radius: 10px;
+      border-radius: 5px;
+      font-size: 18px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
-      user-select: none;
-    }
-    button:hover {
-      background-color: #1f6391;
+      margin-top: 20px;
+      display: block;
+      width: 100%;
     }
     .result {
-      margin-top: 35px;
+      margin-top: 30px;
+      background: #f0fff0;
       padding: 20px;
-      background-color: #dff0d8;
-      color: #3c763d;
-      font-weight: 700;
-      border-radius: 10px;
-      min-height: 56px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      box-shadow: inset 0 0 5px rgba(60, 118, 61, 0.2);
-      user-select: text;
-    }
-    footer {
-      position: fixed;
-      bottom: 15px;
-      width: 100%;
-      text-align: center;
-      font-size: 14px;
-      color: #95a5a6;
-      font-weight: 600;
-      user-select: none;
+      border: 1px solid #c4e9c4;
+      border-radius: 5px;
     }
   </style>
 </head>
 <body>
+<div class="container">
+  <h2>Solar Rooftop Calculator with Govt. Rules</h2>
 
-  <div class="container">
-    <header>
-      <h1>Solar Rooftop Calculator</h1>
-    </header>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="state">Your State</label>
+      <select id="state">
+        <option value="">Select State</option>
+        <option>Gujarat</option>
+        <option>Maharashtra</option>
+        <option>Delhi</option>
+      </select>
 
-    <label for="monthlyBill">Monthly Electricity Units:</label>
-    <input type="number" id="monthlyBill" placeholder="e.g. 180" min="0" />
+      <label for="category">Customer Category</label>
+      <select id="category">
+        <option value="">Select</option>
+        <option>Residential</option>
+        <option>Commercial</option>
+        <option>Industrial</option>
+      </select>
 
-    <label for="roofArea">Total Available Rooftop Area (sq. meters):</label>
-    <input type="number" id="roofArea" placeholder="e.g. 50" min="0" />
+      <label for="monthlyBill">Monthly Bill (Rs.)</label>
+      <input type="number" id="monthlyBill">
 
-    <label for="solarCapacity">Required Solar Plant Capacity (in kW):</label>
-    <input type="number" id="solarCapacity" placeholder="Auto-calculated or enter manually" min="0" step="0.01" />
+      <label for="roofArea">Roof Area (sq.m)</label>
+      <input type="number" id="roofArea">
 
-    <button onclick="calculate()">Calculate</button>
+      <label for="investment">Planned Investment (Rs.)</label>
+      <input type="number" id="investment">
 
-    <div id="result" class="result" style="display:none;"></div>
+      <label for="capacity">Solar Capacity (kW)</label>
+      <input type="number" id="capacity">
+    </div>
+
+    <div class="form-group">
+      <label for="load">Sanction Load (kW)</label>
+      <input type="number" id="load">
+
+      <label for="phase">Connection Type</label>
+      <select id="phase">
+        <option>Single Phase</option>
+        <option>Three Phase</option>
+      </select>
+
+      <label for="consumerId">Consumer ID</label>
+      <input type="text" id="consumerId" placeholder="Optional">
+
+      <label for="subsidyEligible">Eligible for Subsidy?</label>
+      <select id="subsidyEligible">
+        <option>Yes</option>
+        <option>No</option>
+      </select>
+
+      <label for="discom">Discom Name</label>
+      <input type="text" id="discom">
+
+      <label for="installType">Installation Type</label>
+      <select id="installType">
+        <option>Grid-connected</option>
+        <option>Hybrid</option>
+        <option>Off-grid</option>
+      </select>
+    </div>
   </div>
 
-  <footer>
-    &copy; 2025 Solar team. All Rights Reserved.
-  </footer>
+  <button class="btn" onclick="calculate()">CALCULATE</button>
 
-  <script>
-    const unitsInput = document.getElementById("monthlyBill");
-    const areaInput = document.getElementById("roofArea");
-    const capacityInput = document.getElementById("solarCapacity");
-    const resultBox = document.getElementById("result");
+  <div id="result" class="result" style="display:none;"></div>
+</div>
 
-    let manualCapacityChange = false;
+<script>
+  function calculate() {
+    const monthlyBill = parseFloat(document.getElementById('monthlyBill').value) || 0;
+    const capacity = parseFloat(document.getElementById('capacity').value) || (monthlyBill / 1000 * 1.5);
+    const category = document.getElementById('category').value;
+    const subsidyEligible = document.getElementById('subsidyEligible').value;
 
-    function calculateAutoCapacity() {
-      const units = parseFloat(unitsInput.value);
-      const area = parseFloat(areaInput.value);
-
-      if (units > 0 && area > 0) {
-        const calculatedCapacity = Math.min(units / 120, area * 0.1);
-        if (!manualCapacityChange) {
-          capacityInput.value = calculatedCapacity.toFixed(2);
-        }
+    let subsidyRate = 0;
+    if (subsidyEligible === "Yes") {
+      if (category === "Residential") {
+        subsidyRate = 0.4; // 40% subsidy
+      } else if (category === "Commercial") {
+        subsidyRate = 0.2; // 20% subsidy
       } else {
-        if (!manualCapacityChange) {
-          capacityInput.value = "";
-        }
+        subsidyRate = 0.1;
       }
     }
 
-    unitsInput.addEventListener("input", () => {
-      manualCapacityChange = false;
-      calculateAutoCapacity();
-    });
+    const costPerKW = 60000;
+    const estimatedCost = capacity * costPerKW;
+    const subsidyAmount = estimatedCost * subsidyRate;
+    const finalCost = estimatedCost - subsidyAmount;
 
-    areaInput.addEventListener("input", () => {
-      manualCapacityChange = false;
-      calculateAutoCapacity();
-    });
+    const annualSaving = capacity * 1400 * 8; // Rs.8/unit for 1400 units/year
+    const paybackYears = finalCost / annualSaving;
 
-    capacityInput.addEventListener("input", () => {
-      manualCapacityChange = true;
-    });
-
-    function calculate() {
-      const units = parseFloat(unitsInput.value);
-      const area = parseFloat(areaInput.value);
-      let capacity = parseFloat(capacityInput.value);
-
-      if (!units || units <= 0 || !area || area <= 0) {
-        resultBox.style.display = "flex";
-        resultBox.style.backgroundColor = "#f8d7da";
-        resultBox.style.color = "#721c24";
-        resultBox.style.boxShadow = "inset 0 0 5px rgba(114, 28, 36, 0.2)";
-        resultBox.textContent = "Please enter valid positive values for Monthly Units and Rooftop Area.";
-        return;
-      }
-
-      if (!capacity || capacity <= 0) {
-        capacity = Math.min(units / 120, area * 0.1);
-      }
-
-      const maxCapacity = area * 0.1;
-      if (capacity > maxCapacity) {
-        resultBox.style.display = "flex";
-        resultBox.style.backgroundColor = "#f8d7da";
-        resultBox.style.color = "#721c24";
-        resultBox.style.boxShadow = "inset 0 0 5px rgba(114, 28, 36, 0.2)";
-        resultBox.textContent = `Entered solar capacity (${capacity.toFixed(2)} kW) exceeds max possible based on roof area (${maxCapacity.toFixed(2)} kW). Please adjust.`;
-        return;
-      }
-
-      const cost = capacity * 50000; // ₹50,000 per kW approx.
-      const subsidy = cost * 0.4;    // 40% subsidy
-
-      resultBox.style.display = "flex";
-      resultBox.style.backgroundColor = "#dff0d8";
-      resultBox.style.color = "#3c763d";
-      resultBox.style.boxShadow = "inset 0 0 5px rgba(60, 118, 61, 0.2)";
-      resultBox.innerHTML = `<strong>Subsidy Support:</strong> ₹${subsidy.toLocaleString()}`;
-    }
-  </script>
-
+    document.getElementById('result').style.display = 'block';
+    document.getElementById('result').innerHTML = `
+      <h3>Calculation Summary</h3>
+      <p><strong>Solar Capacity:</strong> ${capacity.toFixed(2)} kW</p>
+      <p><strong>Estimated Cost:</strong> ₹${estimatedCost.toLocaleString()}</p>
+      <p><strong>Subsidy Rate:</strong> ${subsidyRate * 100}%</p>
+      <p><strong>Subsidy Amount:</strong> ₹${subsidyAmount.toLocaleString()}</p>
+      <p><strong>Final Cost After Subsidy:</strong> ₹${finalCost.toLocaleString()}</p>
+      <p><strong>Estimated Annual Saving:</strong> ₹${annualSaving.toLocaleString()}</p>
+      <p><strong>Estimated Payback Period:</strong> ${paybackYears.toFixed(1)} years</p>
+    `;
+  }
+</script>
 </body>
 </html>
