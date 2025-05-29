@@ -1,208 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANAND - Official Website</title>
-    <style>
-        /* General Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Arial", sans-serif;
-            scroll-behavior: smooth;
-        }
-
-        /* Background with 3D Wallpaper */
-        body {
-            overflow: hidden;
-            background: url('https://images.unsplash.com/photo-1724430943574-23348700dfea?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw3NXx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
-            color: #ccd6f6;
-            text-align: center;
-            position: relative;
-        }
-
-        /* Dark Overlay for Better Readability */
-        body::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
-            z-index: -1;
-        }
-
-        /* Hero Section */
-        .hero {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            width: 100%;
-            padding: 20px;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Glowing Heading */
-        .hero h1 {
-            font-size: 3rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: #64ffda;
-            text-shadow: 0 0 10px #64ffda, 0 0 20px #64ffda, 0 0 30px #64ffda;
-            opacity: 0;
-            animation: slideDown 1.5s ease-out forwards, glow 2s infinite alternate;
-        }
-
-        /* Typing Effect for Subtitle */
-        .typing-container {
-            display: inline-block;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #ffcc00;
-            white-space: nowrap;
-            border-right: 3px solid #ffcc00;
-            width: 0;
-            overflow: hidden;
-            animation: typing 3s steps(22) forwards, blink 0.8s infinite;
-        }
-
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 260px; }
-        }
-
-        @keyframes blink {
-            50% { border-color: transparent; }
-        }
-
-        /* Subheading */
-        .hero p {
-            font-size: 1.2rem;
-            margin-top: 10px;
-            opacity: 0;
-            animation: fadeIn 2.5s ease-in-out forwards;
-            color: #ffffff;
-        }
-
-        /* Animated Buttons with Glow */
-        .btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 12px 24px;
-            font-size: 1.2rem;
-            color: white;
-            background: linear-gradient(45deg, #ff416c, #ff4b2b);
-            border: none;
-            cursor: pointer;
-            border-radius: 30px;
-            text-decoration: none;
-            transition: 0.3s ease-in-out;
-            box-shadow: 0 0 10px rgba(255, 75, 43, 0.8);
-            animation: floating 3s infinite ease-in-out;
-        }
-
-        .btn:hover {
-            background: linear-gradient(45deg, #ff4b2b, #ff416c);
-            transform: scale(1.1);
-            box-shadow: 0 0 20px rgba(255, 75, 43, 1);
-        }
-
-        /* Social Media Links */
-        .social-links {
-            margin-top: 20px;
-        }
-
-        .social-links a {
-            color: #64ffda;
-            margin: 10px;
-            text-decoration: none;
-            font-size: 1.1rem;
-        }
-
-        .social-links a:hover {
-            text-decoration: underline;
-        }
-
-        /* Footer with Gradient */
-        footer {
-            margin-top: 50px;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.8);
-            color: #64ffda;
-            width: 100%;
-            text-align: center;
-        }
-
-        /* Keyframe Animations */
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-        @keyframes slideDown {
-            0% { opacity: 0; transform: translateY(-50px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes glow {
-            0% { text-shadow: 0 0 10px #64ffda, 0 0 20px #64ffda; }
-            100% { text-shadow: 0 0 15px #64ffda, 0 0 30px #64ffda; }
-        }
-
-        /* Floating Animation */
-        @keyframes floating {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-
-        /* Mobile Responsiveness */
-        @media (max-width: 1024px) {
-            body {
-                background-size: cover;
-            }
-            .hero {
-                padding: 20px;
-            }
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            .typing-container {
-                font-size: 1.3rem;
-            }
-            footer {
-                font-size: 0.9rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Solar Rooftop Calculator</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fdf6ed;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #e2671f;
+      padding: 20px;
+      text-align: center;
+      color: white;
+    }
+    h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+    .container {
+      max-width: 700px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+    label {
+      display: block;
+      margin: 15px 0 5px;
+      font-weight: bold;
+    }
+    input[type="number"],
+    select {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      background-color: #ff7a00;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #e2671f;
+    }
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #fff9f0;
+      border-left: 5px solid #e2671f;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      background: #eee;
+      color: #555;
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1 class="floating">Hello, I'm ANAND</h1>
-        <div class="typing-container">Official Personal Website</div>
-        <p>Welcome to my personal webpage. Let's create something awesome together.</p>
-        <a href="about.html" class="btn">View My Resume</a>
+  <header>
+    <h1>Solar Rooftop Calculator</h1>
+  </header>
 
-        <!-- Social Media Links -->
-        <div class="social-links">
-            <a href="https://www.linkedin.com/in/anand-kola-6b7649297/" target="_blank">LinkedIn</a> |
-            <a href="https://github.com/yourprofile" target="_blank">GitHub</a>
-        </div>
-    </section>
+  <div class="container">
+    <label for="monthlyBill">Monthly Electricity Bill (₹):</label>
+    <input type="number" id="monthlyBill" placeholder="e.g. 2000"/>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 ANAND. All Rights Reserved.</p>
-    </footer>
+    <label for="state">Select State:</label>
+    <select id="state">
+      <option value="Delhi">Delhi</option>
+      <option value="Maharashtra">Maharashtra</option>
+      <option value="Tamil Nadu">Tamil Nadu</option>
+      <!-- Add more as needed -->
+    </select>
+
+    <label for="roofArea">Available Roof Area (sq. meters):</label>
+    <input type="number" id="roofArea" placeholder="e.g. 50"/>
+
+    <button onclick="calculate()">Calculate</button>
+
+    <div id="result" class="result" style="display:none;"></div>
+  </div>
+
+  <footer>
+    &copy; 2025 Solar Yojana. All Rights Reserved.
+  </footer>
+
+  <script>
+    function calculate() {
+      const bill = parseFloat(document.getElementById("monthlyBill").value);
+      const area = parseFloat(document.getElementById("roofArea").value);
+      const resultBox = document.getElementById("result");
+
+      if (!bill || !area) {
+        resultBox.style.display = "block";
+        resultBox.innerHTML = "<strong>Please enter valid values.</strong>";
+        return;
+      }
+
+      const capacity = Math.min(area * 0.1, bill / 600); // Sample logic
+      const cost = capacity * 50000; // ₹ per kW
+      const subsidy = cost * 0.4; // 40% subsidy
+      const netCost = cost - subsidy;
+
+      resultBox.style.display = "block";
+      resultBox.innerHTML = `
+        <strong>Estimated Solar Capacity:</strong> ${capacity.toFixed(2)} kW<br/>
+        <strong>Estimated Cost:</strong> ₹${cost.toLocaleString()}<br/>
+        <strong>Subsidy:</strong> ₹${subsidy.toLocaleString()}<br/>
+        <strong>Net Payable:</strong> ₹${netCost.toLocaleString()}
+      `;
+    }
+  </script>
 
 </body>
 </html>
-
